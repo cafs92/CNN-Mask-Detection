@@ -8,7 +8,7 @@ from keras.callbacks import ModelCheckpoint
 from sklearn.model_selection import train_test_split
 from matplotlib import pyplot as plt
 
-data_path = '../../../Desktop/data'
+data_path = '.././data'
 categories = os.listdir(data_path)
 labels = [i for i in range(len(categories))]
 
