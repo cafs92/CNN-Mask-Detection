@@ -1,4 +1,5 @@
-import cv2, os, sys
+import cv2
+import os
 import numpy as np
 from keras.utils import np_utils
 from keras.models import Sequential
@@ -15,8 +16,8 @@ labels = [i for i in range(len(categories))]
 label_dict = dict(zip(categories, labels))
 
 img_size = 100
-data = [] #x
-target = [] #y
+data = []
+target = []
 
 for category in categories:
     folder_path = os.path.join(data_path, category)
@@ -53,20 +54,16 @@ model=Sequential()
 model.add(Conv2D(200, (3, 3), input_shape=data.shape[1:]))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2,2)))
-#The first CNN layer followed by Relu and MaxPooling layers
 
 model.add(Conv2D(100, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
-#The second convolution layer followed by Relu and MaxPooling layers
 
 model.add(Flatten())
 model.add(Dropout(0.5))
-#Flatten layer to stack the output convolutions from second convolution layer
+
 model.add(Dense(50, activation='relu'))
-#Dense layer of 64 neurons
 model.add(Dense(2, activation='softmax'))
-#The Final layer with two outputs for two categories
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
