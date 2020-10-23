@@ -67,8 +67,8 @@ model.add(Dense(2, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-checkpoint = ModelCheckpoint('model-{epoch:03d}.model', monitor='val_loss', verbose=0, save_best_only=True, mode='auto')
-history = model.fit(train_data, train_target, epochs=20, callbacks=[checkpoint], validation_split=0.2)
+checkpoint = ModelCheckpoint('model-{epoch:03d}.model', monitor='val_loss', verbose=0, save_best_only=False, mode='auto')
+history = model.fit(train_data, train_target, epochs=20, callbacks=[checkpoint], validation_split=0.05)
 
 plt.plot(history.history['loss'], 'r', label='training loss')
 plt.plot(history.history['val_loss'], label='validation loss')
